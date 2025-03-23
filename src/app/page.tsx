@@ -1,10 +1,10 @@
 import Image from "next/image";
-import { AspectRatio, Center } from "@chakra-ui/react"
+import { Box , Center } from "@chakra-ui/react"
 
 export default function Home() {
   return (
-    <AspectRatio bg="bg.muted" ratio={2 / 1}>
+    <Box padding="4" width="100%">
       <Center fontSize="xl">Hello আবুল</Center>
-    </AspectRatio>
+    </Box >
   );
 }

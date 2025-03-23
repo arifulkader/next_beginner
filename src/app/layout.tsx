@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Provider } from "@/components/ui/provider"
+import { Bleed ,Stack,Box,Flex } from "@chakra-ui/react"
+import Link from "next/link";
 
 
 export const metadata: Metadata = {
@@ -17,7 +19,28 @@ export default function RootLayout({
       <body
         className={"antialiased"}
       >
-         <Provider>{children}</Provider>
+        <Provider>
+          <Box>
+          
+            <Flex gap="5" justify="center" direction="row" p="5">
+              <ul>
+              <Stack direction={{ base: "row", md: "row" }} gap="5">
+                <li>
+                <Link href="/">
+                  Home
+                </Link>
+                </li>
+                <li>
+                  <Link href="/about">
+                  About
+                </Link>
+                </li>
+                </Stack>
+              </ul>
+            </Flex>
+          </Box>
+          {children}
+        </Provider>
       </body>
     </html>
   );
