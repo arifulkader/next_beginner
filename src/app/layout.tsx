@@ -35,6 +35,16 @@ export default function RootLayout({
                   About
                 </Link>
                 </li>
+                <li>
+                  <Link href="/message">
+                  Message
+                </Link>
+                </li>
+                <li>
+                  <Link href="/analysis">
+                  Analysis
+                </Link>
+                </li>
                 </Stack>
               </ul>
             </Flex>
