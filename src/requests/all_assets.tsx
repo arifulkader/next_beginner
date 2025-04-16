@@ -10,7 +10,7 @@ export interface Asset {
 
 export default async function getAllAssets(): Promise<Asset[]> {
     const result = await fetch(
-        "https://x5fpoikdj4.execute-api.ap-southeast-1.amazonaws.com/Prod/assets?skip=0&limit=10",
+        "https://x5fpoikdj4.execute-api.ap-southeast-1.amazonaws.com/Prod/assets?skip=0&limit=10&only_video=true&only_image=false",
         {
             next: {
                 revalidate: 10,
