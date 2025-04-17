@@ -4,7 +4,17 @@ export interface Asset {
     file_url: string;
     uploaded_at:string;
     faces: Array<any>;
-    video_details: object
+    video_details: {
+        id: number;
+        frame_count: number;
+        fps: number;
+        duration: number;
+        start_frame: number;
+        end_frame: number;
+        interval: number;
+        face_detected_frames: string;
+        file_size: number;
+    }
     // Add other fields based on the API response
 }
 
