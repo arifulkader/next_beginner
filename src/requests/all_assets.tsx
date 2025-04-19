@@ -12,7 +12,7 @@ export interface Asset {
         start_frame: number;
         end_frame: number;
         interval: number;
-        face_detected_frames: string;
+        detected_frames: Array<any>;
         file_size: number;
     }
     // Add other fields based on the API response
@@ -20,7 +20,7 @@ export interface Asset {
 
 export default async function getAllAssets(): Promise<Asset[]> {
     const result = await fetch(
-        "https://x5fpoikdj4.execute-api.ap-southeast-1.amazonaws.com/Prod/assets?skip=0&limit=10&only_video=true&only_image=false",
+        "https://x5fpoikdj4.execute-api.ap-southeast-1.amazonaws.com/Prod/assets?skip=0&limit=5&only_video=true&only_image=false",
         {
             next: {
                 revalidate: 10,

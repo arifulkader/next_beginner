@@ -18,32 +18,21 @@ import getAllAssets from "@/requests/all_assets";
 import extractFrame from "@/requests/extract_frame";
 
 
+// const function_parameters = assets.map((asset) => ({
+//   video_id: asset.id,
+//   video_url: `https://d2evpwttj2qwd3.cloudfront.net/${asset.file_url}`,
+//   frame_numbers: asset.video_details.face_detected_frames,
+// }));
+
+// const responses = await extractFrame([{
+//   "video_id": 454,
+//   "video_url": `https://d2evpwttj2qwd3.cloudfront.net/upload/Track-1/Camera-2/trim_short_video_2.mp4`,
+//   "frame_numbers": "24,39,54,69,84,99,129,144,159"}])
 
 const VideoViewer = async () => {
 
 
   const assets = await getAllAssets();
-
-  // function_parmeters ={}
-  // assets.map((asset) => {
-  // function_parmeters.append({video_id:asset.id,video_url:`https://d2evpwttj2qwd3.cloudfront.net/${asset.file_url}`,frame_numbers:asset.video_details.face_detected_frames})
-  // )}
-  const function_parameters = assets.map((asset) => ({
-    video_id: asset.id,
-    video_url: `https://d2evpwttj2qwd3.cloudfront.net/${asset.file_url}`,
-    frame_numbers: asset.video_details.face_detected_frames,
-  }));
-
-  // console.log('function_parameters:', typeof function_parameters);
-  // console.log('function_parameters:', function_parameters);
-
-  const responses = await extractFrame([{
-    "video_id": 454,
-    "video_url": `https://d2evpwttj2qwd3.cloudfront.net/upload/Track-1/Camera-2/trim_short_video_2.mp4`,
-    "frame_numbers": "24,39,54,69,84,99,129,144,159"}])
-
-  console.log('responses:', responses);
-
 
 
   return (
@@ -98,16 +87,10 @@ const VideoViewer = async () => {
                       <Text>{asset.faces.length}</Text>
                     </Flex>
 
-                    <Box mt={2}>
+                    <Flex justify="space-between">
                       <Text fontWeight="bold" mb={1}>Detected Frames:</Text>
-                      <HStack spacing={2} wrap="wrap">
-                        {asset.video_details.face_detected_frames.split(',').map((frame, index) => (
-                          <Badge key={index} colorScheme="blue">
-                            {frame}
-                          </Badge>
-                        ))}
-                      </HStack>
-                    </Box>
+                      <Text>{asset.video_details.detected_frames.length}</Text>
+                    </Flex>
                   </VStack>
                 </Box>
               </VStack>
@@ -184,8 +167,7 @@ const VideoViewer = async () => {
                       }}
                       gap={4}
                     >
-                      {asset.video_details.face_detected_frames
-                        .split(',')
+                      {asset.video_details.detected_frames
                         .map((frame, index) => (
                           <Box
                             key={index}
@@ -195,15 +177,14 @@ const VideoViewer = async () => {
                             boxShadow="sm"
                           >
                             <Image
-                              src="https://d2evpwttj2qwd3.cloudfront.net/upload/Track-1/Camera-2/trim_short_video_2.mp4#t=99"
-                              alt={`Frame ${frame}`}
+                              src={`https://d2evpwttj2qwd3.cloudfront.net/${frame.frame_url}`}
+                              alt={`Frame ${frame.id}`}
                               objectFit="cover"
-                              width="100%"
-                              height="150px"
+                              boxSize="150px"
                             />
                             <Box p={2}>
                               <Text fontSize="sm" isTruncated>
-                                Frame: {frame}
+                                Frame: {frame.id}
                               </Text>
                             </Box>
                           </Box>
